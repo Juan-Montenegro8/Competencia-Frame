@@ -4,16 +4,16 @@ public class locas {
 
     public static void main(String[] args) {
         
-        Tortuga to=new Tortuga();
-        Pablo pa=new Pablo();
-        JuanJose ju=new JuanJose();
+        Tortuga tortuga=new Tortuga();
+        Pablo pablo=new Pablo();
+        JuanJose juanJose=new JuanJose();
         Thread conejo =new Thread(new Conejo());
         Thread tavo =new Thread(new Tavo());
         Thread argo =new Thread(new Argoty());
         
-        to.start();
-        pa.start();
-        ju.start();
+        tortuga.start();
+        pablo.start();
+        juanJose.start();
         conejo.start();
         tavo.start();
         argo.start();
