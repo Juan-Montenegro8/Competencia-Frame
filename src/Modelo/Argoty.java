@@ -1,26 +1,36 @@
 package Modelo;
 
-public class Argoty implements Runnable{
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class Argoty implements Runnable {
+
+    private int vuelta = 1;
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     @Override
     public void run() {
-        int vuelta=1;
         System.out.println("Argoty comienza");
-        while (vuelta<=7) {            
-            
+
+        // Programar la tarea para que se ejecute cada 400 milisegundos
+        scheduler.scheduleAtFixedRate(() -> {
             try {
-                Thread.sleep(400);
-                System.out.println("Argoty VA POR LA VUELTA "+vuelta);
-                vuelta++;
-            } catch (InterruptedException ex) {
-                
-                System.out.println("fue a comprar cilantro");
-                
+                if (vuelta <= 7) {
+                    System.out.println("Argoty VA POR LA VUELTA " + vuelta);
+                    vuelta++;
+                } else {
+                    System.out.println("Argoty terminó");
+                    scheduler.shutdown(); // Detener el scheduler cuando termine
+                }
+            } catch (Exception e) {
+                System.out.println("Ocurrió un error: " + e.getMessage());
             }
-            
-        }
-        System.out.println("Argoty termino");
+        }, 0, 400, TimeUnit.MILLISECONDS);
     }
-    
-    
+
+    public static void main(String[] args) {
+        Argoty argoty = new Argoty();
+        new Thread(argoty).start();
+    }
 }
