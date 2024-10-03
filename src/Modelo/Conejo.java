@@ -1,8 +1,5 @@
 package Modelo;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Conejo implements Runnable{
 
     @Override
