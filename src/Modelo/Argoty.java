@@ -29,8 +29,4 @@ public class Argoty implements Runnable {
         }, 0, 400, TimeUnit.MILLISECONDS);
     }
 
-    public static void main(String[] args) {
-        Argoty argoty = new Argoty();
-        new Thread(argoty).start();
-    }
 }
