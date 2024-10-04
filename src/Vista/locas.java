@@ -9,14 +9,14 @@ public class locas {
         JuanJose juanJose=new JuanJose();
         Thread conejo =new Thread(new Conejo());
         Thread tavo =new Thread(new Tavo());
-        Thread argo =new Thread(new Argoty());
+        Thread argoty =new Thread(new Argoty());
         
         tortuga.start();
         pablo.start();
         juanJose.start();
         conejo.start();
         tavo.start();
-        argo.start();
+        argoty.start();
     }
     
 }
