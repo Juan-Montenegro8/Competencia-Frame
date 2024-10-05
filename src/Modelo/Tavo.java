@@ -1,26 +1,30 @@
 package Modelo;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class Tavo implements Runnable{
     
+    private int vuelta = 1;
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
         @Override
     public void run() {
     
-        int vuelta=1;
+        
         System.out.println("tavo comienza");
-        while (vuelta<=7) {            
-            
-            try {
-                Thread.sleep(1000);
-                System.out.println("TAVO VA POR LA VUELTA "+vuelta);
+        scheduler.scheduleAtFixedRate(() ->{
+            if(vuelta<=7){
+                System.out.println("Tavo va por la vuelta "+vuelta);
                 vuelta++;
-            } catch (InterruptedException ex) {
-                
-                System.out.println("fue a comprar cilantro");
-                
+            }else{
+                System.out.println("Tavo termino");
+                scheduler.shutdown();
             }
-            
-        }
-        System.out.println("tavo termino");
+        }, 0, 1000, TimeUnit.MILLISECONDS);
+
+        
     }
         
     
