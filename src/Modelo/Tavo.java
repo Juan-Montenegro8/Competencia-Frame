@@ -15,13 +15,19 @@ public class Tavo implements Runnable{
         
         System.out.println("tavo comienza");
         scheduler.scheduleAtFixedRate(() ->{
-            if(vuelta<=7){
-                System.out.println("Tavo va por la vuelta "+vuelta);
-                vuelta++;
-            }else{
-                System.out.println("Tavo termino");
-                scheduler.shutdown();
+            
+            try {
+                if(vuelta<=7){
+                    System.out.println("Tavo va por la vuelta "+vuelta);
+                    vuelta++;
+                }else{
+                    System.out.println("Tavo termino");
+                    scheduler.shutdown();
+                }
+            } catch (Exception e) {
+                System.out.println("Ocurrio un error: "+e.getMessage());
             }
+            
         }, 0, 1000, TimeUnit.MILLISECONDS);
 
         
