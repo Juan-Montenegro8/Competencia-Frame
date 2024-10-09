@@ -1,26 +1,26 @@
 package Modelo;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class Conejo implements Runnable{
 
+    private int vuelta = 1;
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    
     @Override
     public void run() {
-    
-        int vuelta=1;
+            
         System.out.println("el conejo comienza");
-        while (vuelta<=7) {            
-            
-            try {
-                Thread.sleep(500);
-                System.out.println("EL CONEJO VA POR LA VUELTA "+vuelta);
+
+        scheduler.scheduleAtFixedRate(()->{
+            if (vuelta<=7) {
+                System.out.println("Conejo va por la vuelta "+vuelta);
                 vuelta++;
-            } catch (InterruptedException ex) {
-                
-                System.out.println("se escapo con sol");
-                
             }
-            
-        }
-        System.out.println("conejo termino");
+        }, 0, 500, TimeUnit.MILLISECONDS);
+        
     }
     
 }
