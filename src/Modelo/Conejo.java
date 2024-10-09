@@ -15,9 +15,16 @@ public class Conejo implements Runnable{
         System.out.println("el conejo comienza");
 
         scheduler.scheduleAtFixedRate(()->{
-            if (vuelta<=7) {
-                System.out.println("Conejo va por la vuelta "+vuelta);
-                vuelta++;
+            try {
+                if (vuelta<=7) {
+                    System.out.println("Conejo va por la vuelta "+vuelta);
+                    vuelta++;
+                }else{
+                    System.err.println("Conejo termino");    
+                    scheduler.shutdown();
+                }
+            } catch (Exception e) {
+                System.out.println("Ocurrio un error "+e.getMessage());
             }
         }, 0, 500, TimeUnit.MILLISECONDS);
         
