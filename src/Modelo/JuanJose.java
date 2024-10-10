@@ -12,17 +12,25 @@ public class JuanJose extends Thread{
     @Override
     public void run() {
         
-        System.out.println("comienza JJ"); 
+        System.out.println("comienza Juan Jose"); 
 
         scheduler.scheduleAtFixedRate(()->{
-            if (vuelta<=7) {
-                System.out.println("Juan Jose va por la vuelta "+vuelta);
-                vuelta++;
+            try {
+                if (vuelta<=7) {
+                    System.out.println("Juan Jose va por la vuelta "+vuelta);
+                    vuelta++;
+                }else{
+                    System.out.println("Juna Jose termino");
+                    scheduler.shutdown();
+                }
+            } catch (Exception e) {
+                System.out.println("Ocurrio un error: "+e.getMessage());
             }
+            
         }, 0, 1500, TimeUnit.MILLISECONDS);
 
        
-        System.out.println("JJ termino");
+        
     }
     
 }
