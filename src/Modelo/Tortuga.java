@@ -17,13 +17,21 @@ public class Tortuga extends Thread{
         System.out.println("comienza la tortuga"); 
         
         scheduler.scheduleWithFixedDelay(()->{
-            if (vuelta<=7) {
-                System.out.println("la tortuga pasa por la vuelta "+vuelta);
-                vuelta++;
+            
+            try {
+                if (vuelta<=7) {
+                    System.out.println("la tortuga pasa por la vuelta "+vuelta);
+                    vuelta++;
+                }else{
+                    System.out.println("Tortuga termino");
+                    scheduler.shutdown();
+                }    
+            } catch (Exception e) {
+                System.out.println("Ocurrio un error "+e.getMessage());
             }
+            
         }, 0, 2000, TimeUnit.MILLISECONDS);
        
-        System.out.println("La tortuga termino");
     }
     
     
